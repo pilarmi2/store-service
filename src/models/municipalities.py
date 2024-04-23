@@ -8,13 +8,9 @@ router = APIRouter(
 
 
 class Municipality(BaseModel):
-    id: int
+    municipality_id: int
     name: str
     citizens: int = None
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
 
 class GetMunicipalitiesResponseWrapper(BaseModel):
     municipalities: list[Municipality]
