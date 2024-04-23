@@ -10,9 +10,9 @@
 3. Navigate to the project directory.
 
 ## Setup
-1. Install the required libraries listed in `readme.txt` using pip:
+1. Install the required libraries listed in `requirements.txt` using pip:
 
-```pip install -r readme.txt```
+```pip install -r requirements.txt```
 
 ## Usage
 1. Run the main script using Python 3.9:
