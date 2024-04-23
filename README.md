@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - Python 3.9 or higher is required for localized execution.
-- Required libraries are listed in `readme.txt`.
+- Required libraries are listed in `requirements.txt`.
 
 ## Installation
 1. Ensure Python 3.9 is installed on your system.
