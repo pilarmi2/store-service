@@ -18,8 +18,3 @@ class Municipality(BaseModel):
 
 class GetMunicipalitiesResponseWrapper(BaseModel):
     municipalities: list[Municipality]
-
-class StandardResponse(BaseModel):
-    status: int
-    message: str
-
