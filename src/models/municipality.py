@@ -11,6 +11,3 @@ class Municipality(BaseModel):
     municipality_id: int
     name: str
     citizens: int = None
-
-class GetMunicipalitiesResponseWrapper(BaseModel):
-    municipalities: list[Municipality]
