@@ -9,10 +9,10 @@ from src.models.standard_response import StandardResponse
 
 @router.get('')
 async def search_loans_statement(
-        id: int,
+        municipality_id: int,
         period: str
 ):
-    return {"id": id,
+    return {"municipality_id": municipality_id,
             "purpose": "Mortgage",
             "agreed_amount": 16461616544,
             "drawn_amount": 16461616544,

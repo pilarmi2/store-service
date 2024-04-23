@@ -4,25 +4,28 @@ from fastapi import Query, Body
 
 from src.models.municipalities import GetMunicipalitiesResponseWrapper, router, Municipality
 from src.models.standard_response import StandardResponse
+from src.repository.municipality_repository import MunicipalityRepository
+from src.repository.repository import Repository
+
+repository: Repository = MunicipalityRepository()
 
 
 @router.get("")
-async def search_municipality(
-    id: Annotated[list[int], Query()] = None,
-    name: Annotated[list[str], Query()] = None
-) -> GetMunicipalitiesResponseWrapper:
+async def search_municipality() -> GetMunicipalitiesResponseWrapper:
     return GetMunicipalitiesResponseWrapper(
-        municipalities=[]
+        municipalities=repository.get_all()
     )
 
-@router.get("/{id}")
+
+@router.get("/{municipality_id}")
 async def search_municipality_by_id(
-    id: int
+        municipality_id: int
 ) -> Optional[Municipality]:
-    return {"id": id, "name": "Praha", "citizens": 1156658}
+    return repository.get_by_id(municipality_id)
+
 
 @router.post("")
 async def create_municipality(
-    municipality: Annotated[Municipality, Body()],
+        municipality: Annotated[Municipality, Body()],
 ) -> StandardResponse:
-    return StandardResponse(status=201, message="Created")
+    return repository.add_or_update(municipality)

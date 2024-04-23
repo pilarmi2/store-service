@@ -2,13 +2,13 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 
 router = APIRouter(
-    prefix="/municipalities/{id}/loansStatement",
+    prefix="/municipalities/{municipality_id}/loansStatement",
     tags=["Loans statements"]
 )
 
 
 class LoansStatement(BaseModel):
-    id: int
+    municipality_id: int
     purpose: str
     agreed_amount: int
     drawn_amount: int

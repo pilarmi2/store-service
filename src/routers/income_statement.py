@@ -8,10 +8,10 @@ from src.models.standard_response import StandardResponse
 
 @router.get('')
 async def search_income_statement(
-        id: int,
+        municipality_id: int,
         period: str
 ):
-    return {"id": id, "assets": 549849616516, "passives": 4611661, "period": period}
+    return {"municipality_id": municipality_id, "assets": 549849616516, "passives": 4611661, "period": period}
 
 
 @router.post("")

@@ -12,7 +12,7 @@ async def search_score(
         id: int,
         period: str
 ):
-    return {"id": id,
+    return {"municipality_id": id,
             "score": 464.616,
             "period": period}
 
