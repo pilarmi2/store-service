@@ -1,8 +1,9 @@
-from typing import Annotated, Union, Optional
+from typing import Annotated, Optional
 
-from fastapi import Query, Header, Body
+from fastapi import Query, Body
 
-from src.models.municipalities import GetMunicipalitiesResponseWrapper, router, Municipality, StandardResponse
+from src.models.municipalities import GetMunicipalitiesResponseWrapper, router, Municipality
+from src.models.standard_response import StandardResponse
 
 
 @router.get("")
@@ -23,6 +24,5 @@ async def search_municipality_by_id(
 @router.post("")
 async def create_municipality(
     municipality: Annotated[Municipality, Body()],
-    correlation_id: Annotated[Union[str, None], Header()] = None,
 ) -> StandardResponse:
     return StandardResponse(status=201, message="Created")
