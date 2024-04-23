@@ -1,6 +1,6 @@
 from typing import List
 
-from src.models.municipalities import Municipality
+from src.models.municipality import Municipality
 from src.repository.repository import Repository
 from src.models.standard_response import StandardResponse
 
