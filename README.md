@@ -14,6 +14,9 @@
 
 ```pip install -r requirements.txt```
 
+## System variables
+- Two environment variables, PORT and HOST, need to be set for proper functioning.
+
 ## Usage
 1. Run the main script using Python 3.9:
 
