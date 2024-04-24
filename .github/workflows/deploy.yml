@@ -37,12 +37,12 @@ jobs:
         docker push storeservice.azurecr.io/store-service:${{ github.sha }}
         
 
-    - name: Deploy to App Service
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'pilarmi2-store-service'
-        images: 'storeservice.azurecr.io/store-service:${{ github.sha }}'
-        slot-name: 'staging'
+    # - name: Deploy to App Service
+    #   uses: azure/webapps-deploy@v2
+    #   with:
+    #     app-name: 'pilarmi2-store-service'
+    #     images: 'storeservice.azurecr.io/store-service:${{ github.sha }}'
+    #     slot-name: 'staging'
 
 
     - name: Azure logout
