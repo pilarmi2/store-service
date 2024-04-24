@@ -33,8 +33,8 @@ jobs:
 
     - name: Build and push container image to registry
       run: |
-        docker build . -t storeservice.azurecr.io/store-service:${{ github.sha }}
-        docker push storeservice.azurecr.io/store-service:${{ github.sha }}
+        docker build . -t storeservice.azurecr.io/store-service:1.0 #  ${{ github.sha }}
+        docker push storeservice.azurecr.io/store-service:1.0 #  ${{ github.sha }}
         
 
     # - name: Deploy to App Service
@@ -45,6 +45,6 @@ jobs:
     #     slot-name: 'staging'
 
 
-    - name: Azure logout
-      run: |
-        az logout
+    # - name: Azure logout
+    #   run: |
+    #     az logout
