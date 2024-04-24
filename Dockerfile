@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV PORT=8000
 EXPOSE 8000
 
-ENV HOST="127.0.0.1"
+ENV HOST="0.0.0.0"
 
 # Start service
 CMD ["python", "main.py"]
