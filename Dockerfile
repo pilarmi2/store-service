@@ -15,9 +15,11 @@ RUN pip3 install --upgrade pip
 # Install the packages from requirements.txt in the container
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5000
+# Expose port 8000
 ENV PORT=8000
 EXPOSE 8000
+
+ENV HOST="127.0.0.1"
 
 # Start service
 CMD ["python", "main.py"]
