@@ -6,16 +6,39 @@ from src.repository.repository import Repository
 
 
 class ScoreRepository(Repository):
+    """
+    Represents a repository for managing scores.
+
+    This repository allows for retrieving, adding, and updating scores.
+
+    Attributes:
+        __scores (List[Score]): A list to store scores.
+
+    Methods:
+        get_by_id_and_period(object_id: int, period: str): Retrieves a score by its ID and period.
+        add_or_update(entity: Score): Adds or updates a score.
+    """
+
     def __init__(self):
         self.__scores: List[Score] = []
 
     def get_all(self):
-        pass
+        pass  # This method must be implemented due to the abstract class Repository, but is not used.
 
     def get_by_id(self, object_id: int):
-        pass
+        pass  # This method must be implemented due to the abstract class Repository, but is not used.
 
     def get_by_id_and_period(self, object_id: int, period: str):
+        """
+        Retrieves a score by its ID and period.
+
+        Args:
+            object_id (int): The ID of the score to retrieve.
+            period (str): The period of the score to retrieve.
+
+        Returns:
+            Score: The score with the specified ID and period, if found; otherwise, None.
+        """
         return next(
             (score for score in self.__scores
              if score.municipality_id == object_id and score.period == period),
@@ -23,10 +46,21 @@ class ScoreRepository(Repository):
         )
 
     def add_or_update(self, entity: Score):
+        """
+        Adds or updates a score.
+
+        If a score with the same ID and period already exists, it updates the existing score.
+        Otherwise, it adds the new score to the repository.
+
+        Args:
+            entity (Score): The score to add or update.
+
+        Returns:
+            StandardResponse: A standard response indicating the status of the operation.
+        """
         score: Score = next(
             (score for score in self.__scores
-             if
-             score.municipality_id == entity.municipality_id and score.period == entity.period),
+             if score.municipality_id == entity.municipality_id and score.period == entity.period),
             None
         )
 
@@ -40,3 +74,4 @@ class ScoreRepository(Repository):
             return StandardResponse(status=200,
                                     message=f"Score for municipality_id {score.municipality_id} "
                                             f"and period {score.period} updated")
+
