@@ -12,7 +12,7 @@ repository: Repository = IncomeStatementRepository()
 
 @router.get('')
 async def search_income_statement(
-        municipality_id: int,
+        municipality_id: str,
         period: str
 ):
     return repository.get_by_id_and_period(municipality_id, period)
@@ -20,6 +20,9 @@ async def search_income_statement(
 
 @router.post("")
 async def create_income_statement(
-        income_statement: Annotated[IncomeStatement, Body()],
+        municipality_id: str,
+        income_statement: Annotated[IncomeStatement, Body()]
 ) -> StandardResponse:
+    if municipality_id != income_statement.municipality_id:
+        return StandardResponse(status="400", message="Wrong municipality_id")
     return repository.add_or_update(income_statement)

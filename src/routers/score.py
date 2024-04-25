@@ -13,7 +13,7 @@ repository: Repository = ScoreRepository()
 
 @router.get('')
 async def search_score(
-        municipality_id: int,
+        municipality_id: str,
         period: str
 ):
     return repository.get_by_id_and_period(municipality_id, period)
@@ -21,6 +21,9 @@ async def search_score(
 
 @router.post("")
 async def create_score(
-        score: Annotated[Score, Body()],
+        municipality_id: str,
+        score: Annotated[Score, Body()]
 ) -> StandardResponse:
+    if municipality_id != score.municipality_id:
+        return StandardResponse(status="400", message="Wrong municipality_id")
     return repository.add_or_update(score)
