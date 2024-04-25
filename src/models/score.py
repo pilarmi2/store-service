@@ -8,6 +8,15 @@ router = APIRouter(
 
 
 class Score(BaseModel):
+    """
+    Represents a score assigned to a municipality for a specific period.
+
+    Attributes:
+        municipality_id (int): The ID of the municipality.
+        score (float): The score assigned to the municipality.
+        period (str): The period for which the score is assigned.
+    """
     municipality_id: int
     score: float
     period: str
+
