@@ -5,13 +5,6 @@ from src.repository.repository import Repository
 from src.models.standard_response import StandardResponse
 
 
-from typing import List
-
-from src.models.municipality import Municipality
-from src.repository.repository import Repository
-from src.models.standard_response import StandardResponse
-
-
 class MunicipalityRepository(Repository):
     """
     Represents a repository for managing municipalities.
