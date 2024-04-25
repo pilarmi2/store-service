@@ -1,11 +1,11 @@
 from typing import List
 
-from src.models.loans_statement import LoansStatement
+from src.models.loan_statement import LoanStatement
 from src.models.standard_response import StandardResponse
 from src.repository.repository import Repository
 
 
-class LoansStatementRepository(Repository):
+class LoanStatementRepository(Repository):
     """
     Represents a repository for managing loans statements.
 
@@ -20,7 +20,7 @@ class LoansStatementRepository(Repository):
     """
 
     def __init__(self):
-        self.__loans_statements: List[LoansStatement] = []
+        self.__loans_statements: List[LoanStatement] = []
 
     def get_all(self):
         pass  # This method must be implemented due to the abstract class Repository, but is not used.
@@ -30,22 +30,19 @@ class LoansStatementRepository(Repository):
 
     def get_by_id_and_period(self, object_id: str, period: str):
         """
-        Retrieves a loans statement by its ID and period.
+        Retrieves all loans statements that match the given ID and period.
 
         Args:
             object_id (str): The ID of the loans statement to retrieve.
             period (str): The period of the loans statement to retrieve.
 
         Returns:
-            LoansStatement: The loans statement with the specified ID and period, if found; otherwise, None.
+            List[LoansStatement]: A list of loans statements with the specified ID and period, if found; otherwise, an empty list.
         """
-        return next(
-            (loans_statement for loans_statement in self.__loans_statements
-             if loans_statement.municipality_id == object_id and loans_statement.period == period),
-            None
-        )
+        return [loan_statement for loan_statement in self.__loans_statements
+                if loan_statement.municipality_id == object_id and loan_statement.period == period]
 
-    def add_or_update(self, entity: LoansStatement) -> StandardResponse:
+    def add_or_update(self, entity: LoanStatement) -> StandardResponse:
         """
         Adds or updates a loans statement.
 
@@ -58,23 +55,24 @@ class LoansStatementRepository(Repository):
         Returns:
             StandardResponse: A standard response indicating the status of the operation.
         """
-        loans_statement: LoansStatement = next(
-            (loans_statement for loans_statement in self.__loans_statements
-             if loans_statement.municipality_id == entity.municipality_id and loans_statement.period == entity.period),
+        loan_statement: LoanStatement = next(
+            (loan_statement for loan_statement in self.__loans_statements
+             if loan_statement.municipality_id == entity.municipality_id and loan_statement.period == entity.period and
+             loan_statement.maturity_date == entity.maturity_date),
             None
         )
 
-        if loans_statement is None:
+        if loan_statement is None:
             self.__loans_statements.append(entity)
             return StandardResponse(status=200, message="Created")
         else:
-            loans_statement.municipality_id = entity.municipality_id
-            loans_statement.purpose = entity.purpose
-            loans_statement.agreed_amount = entity.agreed_amount
-            loans_statement.drawn_amount = entity.drawn_amount
-            loans_statement.repaid_amount = entity.repaid_amount
-            loans_statement.maturity_date = entity.maturity_date
-            loans_statement.period = entity.period
+            loan_statement.municipality_id = entity.municipality_id
+            loan_statement.purpose = entity.purpose
+            loan_statement.agreed_amount = entity.agreed_amount
+            loan_statement.drawn_amount = entity.drawn_amount
+            loan_statement.repaid_amount = entity.repaid_amount
+            loan_statement.maturity_date = entity.maturity_date
+            loan_statement.period = entity.period
             return StandardResponse(status=200,
-                                    message=f"Loans statement for municipality_id {loans_statement.municipality_id} "
-                                            f"and period {loans_statement.period} updated")
+                                    message=f"Loans statements for municipality_id {loan_statement.municipality_id} "
+                                            f"and period {loan_statement.period} updated")

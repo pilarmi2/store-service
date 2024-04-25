@@ -1,28 +1,28 @@
 import unittest
 
-from src.models.loans_statement import LoansStatement
-from src.repository.loans_statement_repository import LoansStatementRepository
+from src.models.loan_statement import LoanStatement
+from src.repository.loan_statement_repository import LoanStatementRepository
 from src.repository.repository import Repository
 
 
-class TestLoansStatementRepository(unittest.TestCase):
-    def test_add_loans_statement(self):
-        repository: Repository = LoansStatementRepository()
+class TestLoanStatementRepository(unittest.TestCase):
+    def test_add_loan_statement(self):
+        repository: Repository = LoanStatementRepository()
         assert repository.get_by_id_and_period("1", "2023-12-31") is None
         repository.add_or_update(
-            LoansStatement(municipality_id="1", purpose="Mortgage", agreed_amount=1000, drawn_amount=1000,
+            LoanStatement(municipality_id="1", purpose="Mortgage", agreed_amount=1000, drawn_amount=1000,
                            repaid_amount=500,
                            maturity_date="2025-12-310", period="2023-12-31"))
         assert repository.get_by_id_and_period("1", "2023-12-31").purpose == "Mortgage"
 
-    def test_update_loans_statement(self):
-        repository: Repository = LoansStatementRepository()
+    def test_update_loan_statement(self):
+        repository: Repository = LoanStatementRepository()
         repository.add_or_update(
-            LoansStatement(municipality_id="1", purpose="Mortgage", agreed_amount=1000, drawn_amount=1000,
+            LoanStatement(municipality_id="1", purpose="Mortgage", agreed_amount=1000, drawn_amount=1000,
                            repaid_amount=500,
                            maturity_date="2025-12-310", period="2023-12-31"))
         assert repository.get_by_id_and_period("1", "2023-12-31").purpose == "Mortgage"
         repository.add_or_update(
-            LoansStatement(municipality_id="1", purpose="Loan", agreed_amount=1000, drawn_amount=1000, repaid_amount=500,
+            LoanStatement(municipality_id="1", purpose="Loan", agreed_amount=1000, drawn_amount=1000, repaid_amount=500,
                            maturity_date="2025-12-310", period="2023-12-31"))
         assert repository.get_by_id_and_period("1", "2023-12-31").purpose == "Loan"
