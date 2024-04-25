@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 import uvicorn
 
-from src.routers import municipalities, income_statement, loans_statement, score
+from src.routers import municipalities, income_statement, loans_statements, score
 
 # load environment variables
 port = int(os.environ["PORT"])
@@ -13,7 +13,7 @@ host = os.environ["HOST"]
 app = FastAPI()
 app.include_router(municipalities.router)
 app.include_router(income_statement.router)
-app.include_router(loans_statement.router)
+app.include_router(loans_statements.router)
 app.include_router(score.router)
 
 
@@ -23,4 +23,4 @@ async def api_spec():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host=host, port=port)
+    uvicorn.run(app, host=host, port=5000)
