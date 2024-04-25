@@ -16,7 +16,7 @@ class Score(BaseModel):
         score (float): The score assigned to the municipality.
         period (str): The period for which the score is assigned.
     """
-    municipality_id: int
+    municipality_id: str
     score: float
     period: str
 

@@ -24,12 +24,12 @@ class Repository(ABC):
         pass
 
     @abstractmethod
-    def get_by_id(self, object_id: int):
+    def get_by_id(self, object_id: str):
         """
         Abstract method to retrieve an item from the repository by its ID.
 
         Args:
-            object_id (int): The ID of the object to retrieve.
+            object_id (str): The ID of the object to retrieve.
 
         Returns:
             object: The object corresponding to the given ID.
@@ -37,12 +37,12 @@ class Repository(ABC):
         pass
 
     @abstractmethod
-    def get_by_id_and_period(self, object_id: int, period: str):
+    def get_by_id_and_period(self, object_id: str, period: str):
         """
         Abstract method to retrieve an item from the repository by its ID and period.
 
         Args:
-            object_id (int): The ID of the object to retrieve.
+            object_id (str): The ID of the object to retrieve.
             period (str): The period for which the object should be retrieved.
 
         Returns:

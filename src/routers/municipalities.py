@@ -17,13 +17,13 @@ async def search_municipality() -> List[Municipality]:
 
 @router.get("/{municipality_id}")
 async def search_municipality_by_id(
-        municipality_id: int
+        municipality_id: str
 ) -> Optional[Municipality]:
     return repository.get_by_id(municipality_id)
 
 
 @router.post("")
 async def create_municipality(
-        municipality: Annotated[Municipality, Body()],
+        municipality: Annotated[Municipality, Body()]
 ) -> StandardResponse:
     return repository.add_or_update(municipality)

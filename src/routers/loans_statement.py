@@ -13,7 +13,7 @@ repository: Repository = LoansStatementRepository()
 
 @router.get('')
 async def search_loans_statement(
-        municipality_id: int,
+        municipality_id: str,
         period: str
 ):
     return repository.get_by_id_and_period(municipality_id, period)
@@ -21,6 +21,9 @@ async def search_loans_statement(
 
 @router.post("")
 async def create_loans_statement(
-        loans_statement: Annotated[LoansStatement, Body()],
+        municipality_id: str,
+        loans_statement: Annotated[LoansStatement, Body()]
 ) -> StandardResponse:
+    if municipality_id != loans_statement.municipality_id:
+        return StandardResponse(status="400", message="Wrong municipality_id")
     return repository.add_or_update(loans_statement)

@@ -16,7 +16,7 @@ class MunicipalityRepository(Repository):
 
     Methods:
         get_all() -> List[Municipality]: Retrieves all municipalities.
-        get_by_id(object_id: int) -> Municipality: Retrieves a municipality by its ID.
+        get_by_id(object_id: str) -> Municipality: Retrieves a municipality by its ID.
         add_or_update(entity: Municipality): Adds or updates a municipality.
     """
 
@@ -32,12 +32,12 @@ class MunicipalityRepository(Repository):
         """
         return self.__municipalities
 
-    def get_by_id(self, object_id: int) -> Municipality:
+    def get_by_id(self, object_id: str) -> Municipality:
         """
         Retrieves a municipality by its ID.
 
         Args:
-            object_id (int): The ID of the municipality to retrieve.
+            object_id (str): The ID of the municipality to retrieve.
 
         Returns:
             Municipality: The municipality with the specified ID, if found; otherwise, None.
@@ -47,7 +47,7 @@ class MunicipalityRepository(Repository):
             None
         )
 
-    def get_by_id_and_period(self, object_id: int, period: str):
+    def get_by_id_and_period(self, object_id: str, period: str):
         pass  # This method must be implemented due to the abstract class Repository, but is not used.
 
     def add_or_update(self, entity: Municipality) -> StandardResponse:

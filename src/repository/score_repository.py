@@ -15,7 +15,7 @@ class ScoreRepository(Repository):
         __scores (List[Score]): A list to store scores.
 
     Methods:
-        get_by_id_and_period(object_id: int, period: str): Retrieves a score by its ID and period.
+        get_by_id_and_period(object_id: str, period: str): Retrieves a score by its ID and period.
         add_or_update(entity: Score): Adds or updates a score.
     """
 
@@ -25,15 +25,15 @@ class ScoreRepository(Repository):
     def get_all(self):
         pass  # This method must be implemented due to the abstract class Repository, but is not used.
 
-    def get_by_id(self, object_id: int):
+    def get_by_id(self, object_id: str):
         pass  # This method must be implemented due to the abstract class Repository, but is not used.
 
-    def get_by_id_and_period(self, object_id: int, period: str):
+    def get_by_id_and_period(self, object_id: str, period: str):
         """
         Retrieves a score by its ID and period.
 
         Args:
-            object_id (int): The ID of the score to retrieve.
+            object_id (str): The ID of the score to retrieve.
             period (str): The period of the score to retrieve.
 
         Returns:
