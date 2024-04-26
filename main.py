@@ -23,4 +23,4 @@ async def api_spec():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host=host, port=5000)
+    uvicorn.run(app, host=host, port=port)
