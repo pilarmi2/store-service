@@ -2,7 +2,7 @@
 
 ![image](architecture.png)
 
-Store-service is used to abstract the database connection. It exposes public endpoints that other services can use to read and write to the data.
+Store-service is used to abstract the database connection. It exposes public endpoints that other services can use to read and write data.
 
 ## Scoring system setup
 - For the easiest way to run the whole system, go to www.github.com/pilarmi2/scoring-system-setup. If you want to run the service locally, continue reading.
