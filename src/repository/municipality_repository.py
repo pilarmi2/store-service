@@ -43,7 +43,7 @@ class MunicipalityRepository(Repository):
             Municipality: The municipality with the specified ID, if found; otherwise, None.
         """
         return next(
-            (municipality for municipality in self.__municipalities if municipality.municipality_id == object_id),
+            (m for m in self.__municipalities if m.municipality_id == object_id),
             None
         )
 
@@ -64,7 +64,7 @@ class MunicipalityRepository(Repository):
             StandardResponse: A standard response indicating the status of the operation.
         """
         municipality: Municipality = next(
-            (municipality for municipality in self.__municipalities if municipality.municipality_id == entity.municipality_id),
+            (m for m in self.__municipalities if m.municipality_id == entity.municipality_id),
             None
         )
 
